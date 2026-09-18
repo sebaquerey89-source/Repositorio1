@@ -1,0 +1,12 @@
+# Entorno local de Python
+.venv/
+__pycache__/
+*.py[cod]
+
+# Resultados de Sherlock: pueden contener información personal
+resultados/*
+!resultados/LEEME.md
+
+# Configuración y archivos temporales
+.env
+*.log
