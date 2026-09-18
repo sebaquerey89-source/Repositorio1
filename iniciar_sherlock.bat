@@ -7,18 +7,23 @@ echo       LABORATORIO DE SHERLOCK
 echo ========================================
 echo.
 
+set "PYTHON_CMD=py -3"
 where py >nul 2>&1
 if errorlevel 1 (
-    echo No se encontro Python.
-    echo Instala Python 3.9 o superior y marca "Add Python to PATH".
-    echo Descarga oficial: https://www.python.org/downloads/
-    pause
-    exit /b 1
+    where python >nul 2>&1
+    if errorlevel 1 (
+        echo No se encontro Python.
+        echo Instala Python 3.9 o superior y marca "Add Python to PATH".
+        echo Descarga oficial: https://www.python.org/downloads/
+        pause
+        exit /b 1
+    )
+    set "PYTHON_CMD=python"
 )
 
 if not exist ".venv\Scripts\python.exe" (
     echo Creando un entorno aislado de Python...
-    py -3 -m venv .venv
+    %PYTHON_CMD% -m venv .venv
     if errorlevel 1 (
         echo No se pudo crear el entorno virtual.
         pause
